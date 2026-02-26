@@ -1,0 +1,29 @@
+// Problem: 350. Intersection of Two Arrays II
+// Platform: LeetCode
+// Pattern: HashMap (Frequency Count)
+// Time Complexity: O(n + m)
+// Space Complexity: O(min(n, m))
+
+
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        HashMap<Integer,Integer>hm=new HashMap<>();
+        ArrayList<Integer>result=new ArrayList<>();
+        for(int num:nums1){
+          hm.put(num,hm.getOrDefault(num,0)+1);
+        }
+        for(int num:nums2){
+            if(hm.getOrDefault(num,0)>0)
+            {
+                result.add(num);
+                hm.put(num,hm.get(num)-1);
+            }
+         }
+         int [] res=new int[result.size()];
+         int i=0;
+         for(int n:result){
+            res[i++]=n;
+         }
+      return res;
+    }
+}
